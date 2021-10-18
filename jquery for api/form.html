@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+	<form id="submitform" method="post">
+		<input type="name" name="name" placeholder="Employee Name"><br><br>
+		<input type="email" name="email" placeholder="Email Id"><br><br>
+		<input type="password" name="password" placeholder="Password"><br><br>
+		<input type="text" name="phone" placeholder="Phone no"><br><br>
+		<input type="submit" value="Submit" id="submit">
+	</form>
+	
+	
+</body>
+<script>
+	$("#submit").on("click",function(e){
+
+    // e.preventDefault(); // avoid to execute the actual submit of the form.
+    
+    $.ajax({
+           method: "POST",
+           url: "http://127.0.0.1:8000/api/employee",
+           datatype="json",
+           data: $("#submitform").serialize(), // serializes the form's elements.
+           success: function(data)
+           {
+               alert(data); // show response
+           }
+           error: function (data) {
+                console.log('An error occurred.');
+                console.log(data);
+            },
+         });
+    
+});
+	
+</script>
+
+</html>

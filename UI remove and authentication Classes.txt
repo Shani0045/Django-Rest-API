@@ -1,0 +1,49 @@
+settings.py
+_____________________
+add:
+
+STATIC_URL='/static/'
+
+REST_FRAMEWORK={
+	'DEFAULT_RENDERER_CLASSES':('rest_framework.renderers.JSONRenderer',)
+	}
+______________________________
+
+from rest_framework.permission import IsAuthenticated
+from rest_framework.authentication import BasicAuthentication
+
+authentication classsess:
+SessionAuthetication,BasicAuthenticatio
+permission classes: IsAuthenticated,IsAdminUser,AllowAnyuser,IsAuthenticationOrReadOnly
+
+
+function based authentication:
+_________________________________
+
+from rest_framework.decorators import api_view, permission_classes,authenication_classess
+
+just function ke upar decorator use krna hoga
+
+@authentication_classes([BasicAuthentication])
+@permission_classess([IsAuthenticated])
+
+
+class based:
+
+
+from rest_framework.permissions import IsAuthenticated
+______________________________
+
+class ExampleView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, format=None):
+        content = {
+            'status': 'request was permitted'
+        }
+        return Response(content)
+
+
+def fun():
+    ---	---------
+
