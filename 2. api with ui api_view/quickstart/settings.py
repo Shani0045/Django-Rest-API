@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'quickstart.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'quickstart',
         'HOST':'localhost',
-        'PORT':3306,
-        'USER':'root',
+        'PORT':5432,
+        'USER':'postgres',
         'PASSWORD':'engineer'
     }
 }

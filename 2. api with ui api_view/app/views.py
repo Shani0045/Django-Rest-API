@@ -15,15 +15,16 @@ from rest_framework.response import Response
 def employeeListView(request):
     if request.method=='GET':
         employees=Employee.objects.all()
-        serilizer=EmployeeSerializer(employees,many=True)
+        serilizer=EmployeeSerializer(employees,many=True, context={"name":"Shani Kumar"})
         return Response(serilizer.data)
+    
     elif request.method=='POST':
         serializer_d=EmployeeSerializer(data=request.data)
         if serializer_d.is_valid():
             serializer_d.save()
             return Response(serializer_d.data)
         else:
-            return Response(serializer_d.errors)
+            return Response({"error":serializer_d.errors}, status=422)
 
 @api_view(['GET','PUT','DELETE'])
 def employeeDetailViewuser(request,pk):
