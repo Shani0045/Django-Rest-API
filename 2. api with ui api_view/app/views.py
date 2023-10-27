@@ -28,7 +28,7 @@ def employeeListView(request):
             return Response({"error":serializer_d.errors}, status=422)
 
 @api_view(['GET','PUT','DELETE'])
-def employeeDetailViewuser(request,pk):
+def employeeDetailView(request,pk):
     try:
         employee=Employee.objects.get(pk=pk)
     except Employee.DoesNotExist:
