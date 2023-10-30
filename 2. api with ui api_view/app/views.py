@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework import serializers
+from rest_framework.request import Request
 from rest_framework.parsers import JSONParser
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -21,13 +22,13 @@ from .serializer import EmployeeSerializer, UserSerializer
 # Create your views here.
 
 @api_view(['GET', 'POST'])
-def employeeListView(request: HttpRequest) -> Response:
+def employeeListView(request: Request) -> Response:
 
     if request.method=='GET':
         employees = Employee.objects.all()
         serilizer = EmployeeSerializer(employees, many=True, context={"name":"Shani Kumar"})
         return Response(serilizer.data)
-    
+
     elif request.method == 'POST':
         serializer_d = EmployeeSerializer(data=request.data)
         
@@ -38,7 +39,7 @@ def employeeListView(request: HttpRequest) -> Response:
             return Response({"error":serializer_d.errors}, status=422)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def employeeDetailView(request: HttpRequest, pk: int) -> Response:
+def employeeDetailView(request: Request, pk: int) -> Response:
 
     try:
         employee = Employee.objects.get(pk=pk)
@@ -63,7 +64,7 @@ def employeeDetailView(request: HttpRequest, pk: int) -> Response:
             return Response(serializer_d.errors)
 
 @api_view(['GET'])
-def userListView(request: HttpRequest):
+def userListView(request: Request):
 
     if request.method == 'GET':
         users = User.objects.all()
