@@ -1,8 +1,11 @@
+
+# Import libraries and modules here.
 from django.contrib.auth.models import User
 from .models import Employee
 from string import punctuation
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
+
 class EmployeeSerializer(serializers.ModelSerializer):
     # emp_name = serializers.CharField(source="name")  # renaming the exiting model field name name to emp_name
     class Meta:
